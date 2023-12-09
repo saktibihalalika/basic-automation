@@ -2,6 +2,8 @@
 Library           SeleniumLibrary
 
 *** variables ***
+${BROWSER}     chrome
+
 ${EMAIL}    test@mail.com
 ${PASS-1}    123456    # correct password
 ${PASS-2}    xxs12s2    # wrong password
@@ -24,7 +26,7 @@ testcase-1
 
 # negative test
 testcase-2
-    Open Browser    http://127.0.0.1:8000    headlesschrome
+    Open Browser    http://127.0.0.1:8000    chrome
     Click Element     xpath://a[@href='/login']
     Page Should Contain Element   xpath://input[@name='email']
     input text        name:email       ${EMAIL}
@@ -35,7 +37,7 @@ testcase-2
 
 # logout
 testcase-3
-    Open Browser    http://127.0.0.1:8000    headlesschrome
+    Open Browser    http://127.0.0.1:8000    chrome
     Click Element     xpath://a[@href='/login']
     Page Should Contain Element   xpath://input[@name='email']
     input text        name:email       ${EMAIL}
@@ -48,13 +50,12 @@ testcase-3
 
 #post job
 testcase-4
-    Open Browser    http://127.0.0.1:8000    headlesschrome
+    Open Browser    http://127.0.0.1:8000    chrome
     Click Element     xpath://a[@href='/login']
     Page Should Contain Element   xpath://input[@name='email']
     input text        name:email       ${EMAIL}
     input text        name:password    ${PASS-1}
     Click Element     xpath://button[@type='submit']
-    Login Success
     Page Should Contain Element   xpath://a[@href='/listings/create']
     Click Element     xpath://a[@href='/listings/create']
     Page Should Contain Element   xpath://input[@name='company']
@@ -68,6 +69,14 @@ testcase-4
     Scroll Down Until End
     Click Element     xpath://button[@id='create']
     Close Browser 
+
+# delete post
+testcase-5
+    Login Success
+    Click Element     xpath://a[@href='/listings/manage']
+    Click Element     xpath://button[@id='delete']
+    Close Browser
+    
 
 *** Keywords ***
 
@@ -83,7 +92,7 @@ Scroll Down Until End
     END
 
 Login Success
-    Open Browser    http://127.0.0.1:8000    headlesschrome
+    Open Browser    http://127.0.0.1:8000    chrome
     Click Element     xpath://a[@href='/login']
     Page Should Contain Element   xpath://input[@name='email']
     input text        name:email       ${EMAIL}
