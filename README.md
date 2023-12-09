@@ -31,4 +31,7 @@ to run test use this command line
 
 the result will generate at **results** directory
 
+### Robot framework docs
+https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html
+
 ~ good luck ~
