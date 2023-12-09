@@ -9,7 +9,7 @@ ${PASS-1}    123456    # correct password
 ${PASS-2}    xxs12s2    # wrong password
 
 ${COMPANY}    global.inc
-${TITLE}    Senior Engineering manager
+${TITLE}    [TEST] Senior Engineering manager
 ${LOCATION}     Singapore
 ${TAGS}    engineering manager software
 ${JOBEMAIL}    jobs@global.co
@@ -21,7 +21,13 @@ ${DESCRIPTION}     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
 # login
 # positive test
 testcase-1
-    Login Success
+    Open Browser    http://127.0.0.1:8000    chrome
+    Click Element     xpath://a[@href='/login']
+    Page Should Contain Element   xpath://input[@name='email']
+    input text        name:email       ${EMAIL}
+    input text        name:password    ${PASS-1}
+    Click Element     xpath://button[@type='submit']
+    Page Should Contain Element   xpath://a[@href='/listings/manage']
     Close Browser    
 
 # negative test
