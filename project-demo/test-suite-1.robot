@@ -2,7 +2,8 @@
 Library           SeleniumLibrary
 
 *** variables ***
-${BROWSER}     chrome
+${BROWSER}     headlesschrome
+${HOST}    http://127.0.0.1:8000
 
 ${EMAIL}    test@mail.com
 ${PASS-1}    123456    # correct password
@@ -21,18 +22,12 @@ ${DESCRIPTION}     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
 # login
 # positive test
 testcase-1
-    Open Browser    http://127.0.0.1:8000    chrome
-    Click Element     xpath://a[@href='/login']
-    Page Should Contain Element   xpath://input[@name='email']
-    input text        name:email       ${EMAIL}
-    input text        name:password    ${PASS-1}
-    Click Element     xpath://button[@type='submit']
-    Page Should Contain Element   xpath://a[@href='/listings/manage']
+    Login Success
     Close Browser    
 
 # negative test
 testcase-2
-    Open Browser    http://127.0.0.1:8000    chrome
+    Open Browser    ${HOST}    ${BROWSER}
     Click Element     xpath://a[@href='/login']
     Page Should Contain Element   xpath://input[@name='email']
     input text        name:email       ${EMAIL}
@@ -43,26 +38,14 @@ testcase-2
 
 # logout
 testcase-3
-    Open Browser    http://127.0.0.1:8000    chrome
-    Click Element     xpath://a[@href='/login']
-    Page Should Contain Element   xpath://input[@name='email']
-    input text        name:email       ${EMAIL}
-    input text        name:password    ${PASS-1}
-    Click Element     xpath://button[@type='submit']
-    Page Should Contain Element   xpath://a[@href='/listings/manage']
+    Login Success
     Click Element     xpath://button[@id='logout']
     Page Should Contain Element    xpath://a[@href='/login']
     Close Browser 
 
 #post job
 testcase-4
-    Open Browser    http://127.0.0.1:8000    chrome
-    Click Element     xpath://a[@href='/login']
-    Page Should Contain Element   xpath://input[@name='email']
-    input text        name:email       ${EMAIL}
-    input text        name:password    ${PASS-1}
-    Click Element     xpath://button[@type='submit']
-    Page Should Contain Element   xpath://a[@href='/listings/create']
+    Login Success
     Click Element     xpath://a[@href='/listings/create']
     Page Should Contain Element   xpath://input[@name='company']
     input text        name:company       ${COMPANY}
@@ -72,7 +55,6 @@ testcase-4
     input text        name:website       ${WEBSITE}
     Input Text        name:tags       ${TAGS}
     Input Text        name:description       ${DESCRIPTION}
-    Scroll Down Until End
     Click Element     xpath://button[@id='create']
     Close Browser 
 
@@ -83,6 +65,12 @@ testcase-5
     Click Element     xpath://button[@id='delete']
     Close Browser
     
+testcase-6
+    Login Success
+    Click Element     xpath://a[@href='/listings/create']
+    Page Should Contain Element   xpath://input[@name='company']
+    sleep     5s
+    Scroll Down Until End
 
 *** Keywords ***
 
@@ -98,7 +86,7 @@ Scroll Down Until End
     END
 
 Login Success
-    Open Browser    http://127.0.0.1:8000    chrome
+    Open Browser    ${HOST}    ${BROWSER}
     Click Element     xpath://a[@href='/login']
     Page Should Contain Element   xpath://input[@name='email']
     input text        name:email       ${EMAIL}
