@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.12.0 on win32)" generated="20231223 18:03:52.819" rpa="false" schemaversion="4">
+<suite id="s1" name="Test1" source="C:\Users\SAKTI\Desktop\basic-automation-main\test1.robot">
+<test id="s1-t1" name="Login Success" line="14">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${HOST}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20231223 18:03:53.120" level="INFO">Opening browser 'headlesschrome' to base url 'https://chemons.site/login'.</msg>
+<status status="PASS" starttime="20231223 18:03:53.120" endtime="20231223 18:03:56.714"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>xpath://input[@name='username']</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20231223 18:03:56.935" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20231223 18:03:56.936" level="FAIL">Page should have contained element 'xpath://input[@name='username']' but did not.</msg>
+<status status="FAIL" starttime="20231223 18:03:56.714" endtime="20231223 18:03:56.940"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>type:email</arg>
+<arg>dosen1@example.com</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20231223 18:03:56.941" endtime="20231223 18:03:56.941"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>type:password</arg>
+<arg>Test123$</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20231223 18:03:56.941" endtime="20231223 18:03:56.941"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>type:submit</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20231223 18:03:56.942" endtime="20231223 18:03:56.942"/>
+</kw>
+<kw name="Page Should Not Contain Element" library="SeleniumLibrary">
+<arg>xpath://a[@href='/homepage']</arg>
+<doc>Verifies that element ``locator`` is not found on the current page.</doc>
+<status status="NOT RUN" starttime="20231223 18:03:56.942" endtime="20231223 18:03:56.942"/>
+</kw>
+<status status="FAIL" starttime="20231223 18:03:53.119" endtime="20231223 18:03:56.942">Page should have contained element 'xpath://input[@name='username']' but did not.</status>
+</test>
+<status status="FAIL" starttime="20231223 18:03:52.820" endtime="20231223 18:03:56.944"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Test1">Test1</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
